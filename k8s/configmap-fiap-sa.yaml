@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fiap-diners-payment-configmap
+  namespace: fiap-sa
+  labels:
+    app: fiap-diners-payment-configmap
+data:  
+  ASPNETCORE_ENVIRONMENT: "Development"
