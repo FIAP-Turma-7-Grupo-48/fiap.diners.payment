@@ -7,8 +7,9 @@ namespace Domain.Entities.PaymentAggregate;
 
 public class Payment : IAggregateRoot
 {
-    public Payment(PaymentStatus status, DateTime createdAt)
+    public Payment(string providerPaymentId, PaymentStatus status, DateTime createdAt)
     {
+        _providerPaymentId = providerPaymentId;
         Status = status;
         CreatedAt = createdAt;
     }
@@ -24,7 +25,6 @@ public class Payment : IAggregateRoot
         get => _status;
         private set
         {
-            UnableToChangePaymentStatusException.ThrowIfUnableToChangeStatus(_status);
             _status = value;
         }
     }
@@ -47,7 +47,7 @@ public class Payment : IAggregateRoot
 
     public void SetStatusPaid()
     {
-        UnableToChangePaymentProiderIdException.ThrowIfUnableToChangeStatus(Status, PaymentStatus.Pending);
+        UnableToChangePaymentStatusToPaidException.ThrowIfUnableToChangeStatus(Status);
         Status = PaymentStatus.Paid;
     }
 }
