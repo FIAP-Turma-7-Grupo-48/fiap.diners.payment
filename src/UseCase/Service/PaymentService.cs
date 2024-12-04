@@ -22,7 +22,7 @@ public class PaymentService : IPaymentService
         _paymentRepository = paymentRepository;
         _confirmPaymentClient = confirmPaymentClient;
     }
-    public async Task CreatePaymentAsync(CreatePaymentDto createPaymentDto, CancellationToken cancellationToken)
+    public async Task<string> CreatePaymentAsync(CreatePaymentDto createPaymentDto, CancellationToken cancellationToken)
     {
         Payment payment = new Payment()
         {
@@ -36,6 +36,7 @@ public class PaymentService : IPaymentService
         await _paymentGateway.CreatePayment(payment, cancellationToken);
 
         await _paymentRepository.UpdateAsync(payment, cancellationToken);
+        return payment.Id;
     }
 
     public async Task<Photo?> GetImage(int externalId, CancellationToken cancellationToken)

@@ -49,7 +49,7 @@ namespace UnitTest.Entities
                 ExternalId = 1
             };
 
-            string providerId= Guid.NewGuid().ToString();   
+            string providerId = Guid.NewGuid().ToString();
 
             payment.ProviderPaymentId = providerId;
 
