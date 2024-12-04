@@ -5,6 +5,7 @@ namespace UseCase.Service.Interfaces;
 
 public interface IPaymentService
 {
-    Task CreatePaymentAsync(CreatePaymentDto createPaymentDto, CancellationToken cancellationToken);
+    Task<string> CreatePaymentAsync(CreatePaymentDto createPaymentDto, CancellationToken cancellationToken);
     Task<Photo?> GetImage(int ExternalId, CancellationToken cancellationToken);
+    Task ConfirmPaymentAsync(string providerPaymentId, CancellationToken cancellationToken);
 }
